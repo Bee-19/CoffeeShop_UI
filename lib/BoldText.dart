@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BoldText extends StatelessWidget {
   double size;
@@ -7,6 +8,7 @@ class BoldText extends StatelessWidget {
   final Color? color;
   final TextAlign? align;
   TextOverflow textOverflow;
+  final FontWeight fontWeight;
 
   BoldText({
     super.key,
@@ -14,7 +16,9 @@ class BoldText extends StatelessWidget {
     this.align,
     this.textOverflow = TextOverflow.ellipsis,
     this.color,
-    this.font = 'font30',
+    this.font = 'Fraunces',
+    //this.font = 'Nunito',
+    this.fontWeight = FontWeight.bold,
     required this.text,
   });
 
@@ -24,11 +28,11 @@ class BoldText extends StatelessWidget {
       text,
       textAlign: align,
       overflow: textOverflow,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
+      style: GoogleFonts.getFont(
+        font,
+        fontWeight: fontWeight,
         fontSize: size,
         color: color,
-        fontFamily: font,
       ),
     );
   }
