@@ -64,7 +64,10 @@ flutter:
   assets:
        - assets/coffee_intro.png
        - assets/hot_ex.jpg
-       - assets/hot_ex_mcc.jpg
+       - assets/Ameri.jpg
+       - assets/Cap_Oat.jpg
+       - assets/Latte_Van.jpg
+       - assets/mocha.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

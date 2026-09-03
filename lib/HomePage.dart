@@ -1,17 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:coffeeshop_ui/BoldText.dart';
 import 'package:coffeeshop_ui/LightText.dart';
+import 'package:coffeeshop_ui/Home_Tile.dart';
+import 'package:coffeeshop_ui/Home_Tile2.dart';
+import 'package:coffeeshop_ui/Item_List.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  // ignore: non_constant_identifier_names
-  List Names = ["Cappaccino", "Espresso", "Latte", "Americano", "Mocha"];
   //Icon(Icons.apps_outlined, size: 30)
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: const Color(0xFF1A1512), // match your dark theme
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white70,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          elevation: 0,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined, size: 30),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_bag_outlined, size: 30),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border, size: 30),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notifications_outlined, size: 30),
+              label: '',
+            ),
+          ],
+        ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           // Gives Access to Scrolling
@@ -104,13 +132,13 @@ class HomePage extends StatelessWidget {
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     padding: EdgeInsets.only(left: 8),
-                    itemCount: Names.length,
+                    itemCount: coffeeItems.length,
                     separatorBuilder: (context, index) => SizedBox(width: 30),
                     itemBuilder: ((context, index) {
                       return Container(
                         child: Center(
                           child: BoldText(
-                            text: Names[index],
+                            text: coffeeItems[index].name,
                             size: 18.5,
                             color: index == 1
                                 ? Color(0xFF8B5A2B)
@@ -120,146 +148,17 @@ class HomePage extends StatelessWidget {
                       );
                     }),
                   ),
-                ), //cut
-                // Image Containers
-                Container(
-                  width: double.maxFinite,
-                  height: 200,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return Expanded(
-                        child: // Image and description container
-                            //SizedBox(height: 10),
-                            Container(
-                              margin: EdgeInsets.only(right: 20, left: 10),
-                              height: 200,
-                              width: 160,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFD9A66C).withValues(alpha: 0.2),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Container(
-                                      height: 100,
-                                      width: 200,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                            'assets/hot_ex.jpg',
-                                          ),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        color: Colors.grey.withValues(
-                                          alpha: 0.2,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    // The Rating corner container
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.star,
-                                          size: 13,
-                                          color: Colors.orange.withValues(
-                                            alpha: 0.7,
-                                          ),
-                                        ),
-                                        LightText(
-                                          text: '4.5',
-                                          size: 13,
-                                          color: Colors.white70,
-                                        ),
-                                      ],
-                                    ),
-                                    margin: EdgeInsets.only(top: 10, left: 105),
-                                    height: 20,
-                                    width: 45,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black.withValues(
-                                        alpha: 0.3,
-                                      ),
-                                      borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(20),
-                                        bottomLeft: Radius.circular(15),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      top: 109.5,
-                                      left: 10.0,
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        LightText(
-                                          text: 'Hot Espresso',
-                                          size: 20,
-                                          color: Colors.white,
-                                        ),
-                                        LightText(
-                                          text: 'With Oat Milk',
-                                          size: 13,
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(height: 3),
-                                        Row(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                LightText(
-                                                  text: ' \$',
-                                                  size: 20,
-                                                  color: Colors.orange
-                                                      .withValues(alpha: 0.7),
-                                                ),
-                                                SizedBox(width: 8),
-                                                LightText(
-                                                  text: '4.50',
-                                                  size: 20,
-                                                  color: Colors.white,
-                                                ),
-                                                SizedBox(width: 37),
-                                              ],
-                                            ),
-                                            Container(
-                                              child: Icon(
-                                                Icons.add,
-                                                size: 20,
-                                                color: Colors.white,
-                                              ),
-                                              height: 30,
-                                              width: 30,
-                                              decoration: BoxDecoration(
-                                                color: Color(0xFFD9A66C)
-                                                    .withValues(alpha: 0.6),
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                      );
-                    },
-                  ),
                 ),
+                // Taken from the Home_tile
+                Home_Tile(),
+                SizedBox(height: 20),
+                BoldText(
+                  text: "Special For You",
+                  size: 25,
+                  color: Colors.white,
+                ),
+                SizedBox(height: 15),
+                Home_Tile2(),
               ],
             ),
           ),
@@ -268,116 +167,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-// // Image and description container
-//                 //SizedBox(height: 10),
-//                 Container(
-//                   height: 200,
-//                   width: 160,
-//                   decoration: BoxDecoration(
-//                     color: Color(0xFFD9A66C).withValues(alpha: 0.2),
-//                     borderRadius: BorderRadius.circular(25),
-//                   ),
-//                   child: Stack(
-//                     children: [
-//                       Padding(
-//                         padding: const EdgeInsets.all(10.0),
-//                         child: Container(
-//                           height: 100,
-//                           width: 200,
-//                           decoration: BoxDecoration(
-//                             image: DecorationImage(
-//                               image: AssetImage('assets/hot_ex.jpg'),
-//                               fit: BoxFit.cover,
-//                             ),
-//                             color: Colors.grey.withValues(alpha: 0.2),
-//                             borderRadius: BorderRadius.circular(20),
-//                           ),
-//                         ),
-//                       ),
-//                       Container(
-//                         // The Rating corner container
-//                         child: Row(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [
-//                             Icon(
-//                               Icons.star,
-//                               size: 13,
-//                               color: Colors.orange.withValues(alpha: 0.7),
-//                             ),
-//                             LightText(
-//                               text: '4.5',
-//                               size: 13,
-//                               color: Colors.white70,
-//                             ),
-//                           ],
-//                         ),
-//                         margin: EdgeInsets.only(top: 10, left: 105),
-//                         height: 20,
-//                         width: 45,
-//                         decoration: BoxDecoration(
-//                           color: Colors.black.withValues(alpha: 0.3),
-//                           borderRadius: BorderRadius.only(
-//                             topRight: Radius.circular(20),
-//                             bottomLeft: Radius.circular(15),
-//                           ),
-//                         ),
-//                       ),
-//                       Padding(
-//                         padding: EdgeInsets.only(top: 109.5, left: 10.0),
-//                         child: Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           children: [
-//                             LightText(
-//                               text: 'Hot Espresso',
-//                               size: 20,
-//                               color: Colors.white,
-//                             ),
-//                             LightText(
-//                               text: 'With Oat Milk',
-//                               size: 13,
-//                               color: Colors.white70,
-//                             ),
-//                             SizedBox(height: 3),
-//                             Row(
-//                               children: [
-//                                 Row(
-//                                   children: [
-//                                     LightText(
-//                                       text: ' \$',
-//                                       size: 20,
-//                                       color: Colors.orange.withValues(
-//                                         alpha: 0.7,
-//                                       ),
-//                                     ),
-//                                     SizedBox(width: 8),
-//                                     LightText(
-//                                       text: '4.50',
-//                                       size: 20,
-//                                       color: Colors.white,
-//                                     ),
-//                                     SizedBox(width: 37),
-//                                   ],
-//                                 ),
-//                                 Container(
-//                                   child: Icon(
-//                                     Icons.add,
-//                                     size: 20,
-//                                     color: Colors.white,
-//                                   ),
-//                                   height: 30,
-//                                   width: 30,
-//                                   decoration: BoxDecoration(
-//                                     color: Color(0xFFD9A66C)
-//                                         .withValues(alpha: 0.6),
-//                                     borderRadius: BorderRadius.circular(10),
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
