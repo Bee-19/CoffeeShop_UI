@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LightText extends StatelessWidget {
   double size;
-  final String text;
   final String font;
-  Color color;
+  final String text;
+  final Color? color;
+  final TextAlign? align;
   TextOverflow textOverflow;
+  final FontWeight fontWeight;
 
   LightText({
     super.key,
-    this.textOverflow = TextOverflow.ellipsis,
-    this.font = 'font30',
     this.size = 20,
-    this.color = Colors.black,
+    this.align,
+    this.textOverflow = TextOverflow.ellipsis,
+    this.color,
+    this.font = 'Nunito',
+    this.fontWeight = FontWeight.bold,
     required this.text,
   });
 
@@ -20,8 +25,14 @@ class LightText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: align,
       overflow: textOverflow,
-      style: TextStyle(fontSize: size, color: color, fontFamily: font),
+      style: GoogleFonts.getFont(
+        font,
+        fontWeight: fontWeight,
+        fontSize: size,
+        color: color,
+      ),
     );
   }
 }
