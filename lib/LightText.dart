@@ -9,6 +9,7 @@ class LightText extends StatelessWidget {
   final TextAlign? align;
   TextOverflow textOverflow;
   final FontWeight fontWeight;
+  final int? maxLines;
 
   LightText({
     super.key,
@@ -18,6 +19,7 @@ class LightText extends StatelessWidget {
     this.color,
     this.font = 'Nunito',
     this.fontWeight = FontWeight.bold,
+    this.maxLines,
     required this.text,
   });
 
@@ -27,6 +29,7 @@ class LightText extends StatelessWidget {
       text,
       textAlign: align,
       overflow: textOverflow,
+      maxLines: maxLines,
       style: GoogleFonts.getFont(
         font,
         fontWeight: fontWeight,
