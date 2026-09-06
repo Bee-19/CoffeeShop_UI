@@ -1,3 +1,4 @@
+import 'package:coffeeshop_ui/LikedPage.dart';
 import 'package:flutter/material.dart';
 import 'package:coffeeshop_ui/BoldText.dart';
 import 'package:coffeeshop_ui/Home_Tile.dart';
@@ -23,6 +24,11 @@ class HomePage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => CartPage()),
+              );
+            } else if (index == 2) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LikedPage()),
               );
             }
           },

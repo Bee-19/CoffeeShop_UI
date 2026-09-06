@@ -3,6 +3,7 @@ import 'package:coffeeshop_ui/BoldText.dart';
 import 'package:coffeeshop_ui/LightText.dart';
 import 'package:coffeeshop_ui/Item_List.dart';
 import 'package:coffeeshop_ui/CoffeeDetailPage2.dart';
+import 'package:coffeeshop_ui/LikedPage.dart';
 
 class CoffeeDetailPage extends StatefulWidget {
   final CoffeeItem item; // whichever coffee was tapped gets passed in here
@@ -14,11 +15,15 @@ class CoffeeDetailPage extends StatefulWidget {
 }
 
 class _CoffeeDetailPageState extends State<CoffeeDetailPage> {
-  bool isLiked = false; // like button state
-
+  bool isLiked = false;
   @override
   Widget build(BuildContext context) {
     final item = widget.item; // items file
+
+    void initState() {
+      super.initState();
+      isLiked = LikedManager.instance.isLiked(widget.item);
+    }
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -82,7 +87,12 @@ class _CoffeeDetailPageState extends State<CoffeeDetailPage> {
 
                         // like button
                         GestureDetector(
-                          onTap: () => setState(() => isLiked = !isLiked),
+                          onTap: () {
+                            setState(() {
+                              isLiked = !isLiked;
+                              LikedManager.instance.toggle(widget.item);
+                            });
+                          },
                           child: Container(
                             height: 40,
                             width: 40,
