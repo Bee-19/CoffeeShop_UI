@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:coffeeshop_ui/BoldText.dart';
 import 'package:coffeeshop_ui/LightText.dart';
-import 'package:coffeeshop_ui/Home_Tile.dart';
-import 'package:coffeeshop_ui/Home_Tile2.dart';
 import 'package:coffeeshop_ui/Item_List.dart';
 import 'package:coffeeshop_ui/CoffeeDetailPage.dart';
 
@@ -120,18 +117,45 @@ class Home_Tile extends StatelessWidget {
                                       SizedBox(width: 37),
                                     ],
                                   ),
-                                  Container(
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 20,
-                                      color: Colors.white,
-                                    ),
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFD9A66C)
-                                          .withValues(alpha: 0.6),
-                                      borderRadius: BorderRadius.circular(10),
+                                  // the plus sign popup
+                                  GestureDetector(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        builder: (context) {
+                                          return ClipRRect(
+                                            borderRadius: BorderRadius.vertical(
+                                              top: Radius.circular(30),
+                                            ),
+                                            child: SizedBox(
+                                              height:
+                                                  MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.85,
+                                              child: CoffeeDetailPage(
+                                                item: item,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 20,
+                                        color: Colors.white,
+                                      ),
+                                      height: 30,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFD9A66C)
+                                            .withValues(alpha: 0.6),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
                                     ),
                                   ),
                                 ],

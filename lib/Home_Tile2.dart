@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:coffeeshop_ui/BoldText.dart';
 import 'package:coffeeshop_ui/LightText.dart';
-import 'package:coffeeshop_ui/Home_Tile.dart';
-import 'package:coffeeshop_ui/Home_Tile2.dart';
 import 'package:coffeeshop_ui/Item_List.dart';
 import 'package:coffeeshop_ui/CoffeeDetailPage.dart';
 

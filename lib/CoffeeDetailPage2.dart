@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:coffeeshop_ui/BoldText.dart';
 import 'package:coffeeshop_ui/LightText.dart';
 import 'package:coffeeshop_ui/Item_List.dart';
+import 'package:coffeeshop_ui/CartManager.dart';
+import 'package:coffeeshop_ui/CartPage.dart';
 
 class CoffeeDetailPage2 extends StatefulWidget {
   final CoffeeItem item;
@@ -21,12 +23,12 @@ class _CoffeeDetailPage2State extends State<CoffeeDetailPage2> {
     final item = widget.item;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BoldText(text: 'Description', size: 18, color: Colors.white),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           LightText(
             text: item.longDescription,
             size: 14,
@@ -34,26 +36,21 @@ class _CoffeeDetailPage2State extends State<CoffeeDetailPage2> {
             textOverflow: TextOverflow.visible,
             maxLines: null,
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
 
           BoldText(text: 'Size', size: 18, color: Colors.white),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           Row(
             children: List.generate(sizes.length, (index) {
               final selected = selectedSize == index;
               return GestureDetector(
                 onTap: () => setState(() => selectedSize = index),
                 child: Container(
-                  margin: const EdgeInsets.only(right: 12),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 22,
-                    vertical: 12,
-                  ),
+                  margin: EdgeInsets.only(right: 12),
+                  padding: EdgeInsets.symmetric(horizontal: 22, vertical: 12),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: selected
-                          ? const Color(0xFFD9A66C)
-                          : Colors.white24,
+                      color: selected ? Color(0xFFD9A66C) : Colors.white24,
                       width: 1.5,
                     ),
                     borderRadius: BorderRadius.circular(10),
@@ -61,9 +58,7 @@ class _CoffeeDetailPage2State extends State<CoffeeDetailPage2> {
                   child: Text(
                     sizes[index],
                     style: TextStyle(
-                      color: selected
-                          ? const Color(0xFFD9A66C)
-                          : Colors.white70,
+                      color: selected ? Color(0xFFD9A66C) : Colors.white70,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -93,7 +88,7 @@ class _CoffeeDetailPage2State extends State<CoffeeDetailPage2> {
                       const SizedBox(width: 4),
                       Text(
                         item.price.toStringAsFixed(2),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -107,16 +102,20 @@ class _CoffeeDetailPage2State extends State<CoffeeDetailPage2> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    // 🔻 hook your add-to-cart logic here
+                    CartManager.instance.add(item, size: sizes[selectedSize]);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CartPage()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF8B5A2B),
-                    padding: const EdgeInsets.symmetric(vertical: 18),
+                    backgroundColor: Color(0xFF8B5A2B),
+                    padding: EdgeInsets.symmetric(vertical: 18),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     'Add to Cart',
                     style: TextStyle(
                       color: Colors.white,

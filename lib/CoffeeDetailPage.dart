@@ -48,7 +48,7 @@ class _CoffeeDetailPageState extends State<CoffeeDetailPage> {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          const Color(0xFF1A1512).withValues(alpha: 0.95),
+                          Color(0xFF1A1512).withValues(alpha: 0.95),
                         ],
                       ),
                     ),
@@ -58,13 +58,11 @@ class _CoffeeDetailPageState extends State<CoffeeDetailPage> {
                 // back + like buttons
                 SafeArea(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 10,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // back arrow
                         GestureDetector(
                           onTap: () => Navigator.pop(context),
                           child: Container(
@@ -74,7 +72,7 @@ class _CoffeeDetailPageState extends State<CoffeeDetailPage> {
                               color: Colors.black.withValues(alpha: 0.4),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: const Icon(
+                            child: Icon(
                               Icons.arrow_back_ios_new,
                               size: 20,
                               color: Colors.white,
@@ -192,10 +190,7 @@ class _CoffeeDetailPageState extends State<CoffeeDetailPage> {
         color: Colors.black.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Text(
-        label,
-        style: const TextStyle(color: Colors.white70, fontSize: 12),
-      ),
+      child: Text(label, style: TextStyle(color: Colors.white70, fontSize: 12)),
     );
   }
 }
