@@ -3,6 +3,7 @@ import 'package:coffeeshop_ui/BoldText.dart';
 import 'package:coffeeshop_ui/LightText.dart';
 import 'package:coffeeshop_ui/CartManager.dart';
 import 'package:coffeeshop_ui/Head_Nav.dart';
+import 'package:coffeeshop_ui/PaymentPage.dart';
 
 // Widget used
 // _cartCard(CartEntry entry, int index)
@@ -222,7 +223,10 @@ class _CartPageState extends State<CartPage> {
               onPressed: Entry.isEmpty
                   ? null
                   : () {
-                      // 🔻 hook your real checkout/payment logic here later
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PaymentPage()),
+                      );
                     },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF8B5A2B),
